@@ -1,0 +1,502 @@
+@charset "utf-8";
+
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+
+/* 유틸리티 */
+/* 스크린리더 */
+.sr-only {
+    position:absolute;
+    left:-10000px;
+    top:auto;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+}
+
+body {
+    font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+    font-weight: 500;
+    color: #FFF;
+    background-color: #F2F2F2;
+}
+
+button, input {
+    font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+}
+
+/* 버튼 공통 스타일 */
+button {
+    background: none;
+    box-sizing: border-box;
+    height: 40px;
+    border: 2px solid #956BD9;
+    border-radius: 30px;
+    color: #956BD9;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* 배경색이 있는 버튼은 fill 클래스 추가 */
+button.fill {
+    border: none;
+    background: #956BD9;
+    color: #FFF;
+}
+
+/* 헤더 */
+.header {
+    background-color: #956BD9;
+    height: 403px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* 헤더 - 방문자 수 */
+.header .visitors {
+    width: 1190px;
+    padding-top: 28px;
+    font-size: 13px;
+}
+
+/* 메인 컨텐츠 */
+.main-contents {
+    position: absolute;
+    top: 116px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+}
+
+/* 메인 컨텐츠 - 헤더 */
+.contents-header {
+    text-align: center;
+    margin-bottom: 90px;
+}
+
+.contents-header h2 {
+    font-size: 18px;
+    color: #FFF282;
+    margin-bottom: 30px;
+}
+
+/* 챌린지 이름 */
+.challenge-title {
+    font-size: 36px;
+    font-weight: 700;
+}
+
+/* 메인 컨텐츠 - article */
+.main-contents article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 상태바 */
+.progress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+/* 상태바 컨테이너 */
+.progress-bar-cont {
+    width: 377px;
+    height: 30px;
+    border-radius: 20px;
+    background-color: #FFF;
+    box-sizing: border-box;
+    padding: 3px 4px;
+    margin-right: 12px;
+}
+
+/* 상태바 */
+/* progress-bar width는 진행상황에 맞춰서 변경 */
+.progress-bar {
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(270deg, #956BD9 0%, #FFE973 101.15%);
+    border-radius: 20px;
+}
+
+/* 성공 문구 */
+.progress-success {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* 챌린지 테이블 */
+.challenge-table {
+    position: relative;
+    width: 446px;
+    background-color: #FFF;
+    border-radius: 20px;
+    box-sizing: border-box;
+    padding: 24px 24px 12px;
+    box-shadow: 0px 0px 8px rgba(149, 107, 217, 0.38);
+    margin-right: 0;
+    margin-bottom: 40px;
+}
+
+/* 챌린지 테이블 wrapper */
+.table-item-wrap {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* 날짜와 스티커가 들어갈 div */
+.table-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+    box-sizing: border-box;
+    background-color: #FFE973;
+    border-radius: 15px;
+    margin: 0 12px 12px 0;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.table-item.selected {
+    border: 2px solid #956BD9;
+    color: #956BD9;
+}
+
+/* table-item 중 5의 배수 자식들은 margin-right=0 */
+.challenge-table .table-item:nth-child(5n) {
+    margin: 0 0 12px 0;
+}
+
+/* 스티커 선택 모달 */
+/* 위치 변경해야 함 */
+.select-sticker {
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: 236px;
+    box-sizing: border-box;
+    padding: 15px 16px 14px;
+    background-color: #FFF;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
+/* table-item 클릭시 active 클래스 추가 */
+.select-sticker.active {
+    display: block;
+}
+
+.select-sticker h3 {
+    color: #956BD9;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 6px;
+}
+
+/* 스티커 리스트 */
+.sticker-list {
+    display: flex;
+    justify-content: space-between;
+    color: #828282;
+    font-size: 12px;
+}
+
+/* 스티커 아이템 */
+.sticker-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* 스티커 이미지 */
+.select-sticker img {
+    width: 42px;
+    height: 42px;
+    margin-bottom: 5px;
+}
+
+/* 메인 버튼 리스트 */
+.main-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 446px;
+}
+
+/* 챌린지 설정하기 버튼 */
+.main-buttons .setting-btn {
+    width: 140px;
+}
+
+/* 저장, 공유 버튼 */
+.main-buttons .save-btn, .main-buttons .share-btn {
+    width: 96px;
+}
+
+.main-buttons .save-btn {
+    margin-right: 12px;
+}
+
+/* 챌린지 수정 - 모달창 */
+.setting-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    color: #4F4F4F;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* 챌린지 설정하기 버튼 클릭시 active 클래스 추가 */
+.setting-modal.active {
+    display: block;
+}
+
+/* 챌린지 수정 모달 wrapper */
+.modal-wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: 426px;
+    background-color: #FFF;
+    box-sizing: border-box;
+    padding: 28px 25px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
+}
+
+.setting-modal header h2 {
+    font-size: 16px;
+    font-weight: 700;
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+/* input */
+.input {
+    padding: 22px 0;
+    border-top: 1px solid #E0E0E0;
+    border-bottom: 1px solid #E0E0E0;
+    margin-bottom: 22px;
+}
+
+/* 챌린지 이름 설정하기 */
+.input-name {
+    margin-bottom: 20px;
+}
+
+/* 데이터 제목 스타일 */
+.input-title {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+/* 챌린지 이름 input 스타일 */
+.input-name input[type=text] {
+    width: 100%;
+    height: 36px;
+    border: 1px solid #BDBDBD;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 0 10px;
+}
+
+/* 챌린지 기간 설정 스타일 */
+/* radio 버튼을 보이지 않게 설정 */
+.input-term input[type=radio] {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/* label 스타일 */
+.input-term input[type=radio] + label {
+    display: inline-block;
+    width: 112px;
+    height: 36px;
+    padding: 11px 0;
+    border-radius: 5px;
+    border: 1px solid #BDBDBD;
+    box-sizing: border-box;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+}
+
+/* radio 버튼을 클릭했을 때 label 스타일 */
+.input-term input[type=radio]:checked + label {
+    border: none;
+    border-radius: 5px;
+    background-color: #828282;
+    color: #FFF;
+}
+
+/* 버튼 정렬을 위한 input wrapper */
+.input-wrap {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 챌린지 설정 모달 - 버튼 */
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 취소 버튼 */
+.modal-buttons .cancel-btn {
+    width: 132px;
+}
+
+/* 저장 버튼 */
+.modal-buttons .save-btn {
+    width: 226px;
+}
+
+@media all and (max-width: 480px) {
+    button {
+        height: 36px;
+        font-size: 12px;
+    }
+
+    .header {
+        height: 267px;
+    }
+
+    .header .visitors {
+        display: none;
+    }
+
+    .main-contents {
+        top: 65px;
+    }
+
+    .contents-header {
+        margin-bottom: 59px;
+    }
+
+    .contents-header h2 {
+        font-size: 12px;
+        margin-bottom: 16px;
+    }
+
+    .challenge-title {
+        font-size: 18px;
+    }
+
+    .progress {
+        margin-bottom: 20px;
+    }
+
+    .progress-bar-cont {
+        width: 261px;
+        height: 20px;
+        padding: 3px;
+        margin-right: 8px;
+    }
+
+    .progress-success {
+        font-size: 13px;
+    }
+
+    .challenge-table {
+        width: 322px;
+        padding: 16px 16px 6px;
+        margin-bottom: 33px;
+    }
+
+    .table-item {
+        width: 50px;
+        height: 50px;
+        margin: 0 10px 10px 0;
+        font-size: 14px;
+    }
+
+    .challenge-table .table-item:nth-child(5n) {
+        margin: 0 0 10px 0;
+    }
+
+    .select-sticker h3 {
+        font-size: 10px;
+    }
+
+    .sticker-list {
+        font-size: 10px;
+    }
+
+    .main-buttons {
+        width: 322px;
+    }
+
+    .main-buttons .setting-btn {
+        width: 120px;
+    }
+
+    .main-buttons .save-btn, .main-buttons .share-btn {
+        width: 78px;
+    }
+
+    .main-buttons .save-btn {
+        margin-right: 8px;
+    }
+
+    .setting-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        color: #4F4F4F;
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .setting-modal.active {
+        display: block;
+    }
+
+    .modal-wrap {
+        width: 330px;
+        padding: 26px 25px;
+    }
+
+    .setting-modal header h2 {
+        font-size: 14px;
+        padding-bottom: 22px;
+    }
+
+    .input-title {
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+
+    .input-term input[type=radio] + label {
+        width: 86px;
+        padding: 12px 0;
+        font-size: 12px;
+    }
+
+    .modal-buttons .cancel-btn {
+        width: 96px;
+    }
+
+    .modal-buttons .save-btn {
+        width: 176px;
+    }
+}
