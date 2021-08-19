@@ -61,15 +61,10 @@ function stickerStyle(i, e){
     const index = i%5;
 
     selectSticker.style.top = `${tableItemWidth+e.offsetTop}px`;
-    selectSticker.style.left = `${e.offsetLeft}px`;
 
-    if(tableItemWidth > 80){
-        if(index >= 2) {
-            selectSticker.style.left = `${tableItem[2].offsetLeft}px`;
-        }
+    if(index >= 1) {
+        selectSticker.style.left = `${tableItem[1].offsetLeft}px`;
     } else {
-        if(index >= 1) {
-            selectSticker.style.left = `${tableItem[1].offsetLeft}px`;
-        }
+        selectSticker.style.left = `${e.offsetLeft}px`;
     }
 }
