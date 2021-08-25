@@ -2,7 +2,8 @@
 const settingBtn = document.querySelector(".setting-btn");
 const settingModal = document.querySelector(".setting-modal");
 const cancelBtn = settingModal.querySelector(".cancel-btn");
-
+const stickers = document.querySelectorAll(".sticker")
+console.log(stickers);
 settingBtn.addEventListener("click", function() {
     settingModal.classList.add("active");
 });
@@ -22,36 +23,59 @@ window.onclick = function(e) {
     }
 };
 
+
+function createDom(dom="div",id="",className="", child="") {
+    const el = document.createElement("dom");
+    el.className = className;
+    el.id=id
+    console.log(child);
+    el.innerHTML = child
+    return el
+}
+
+//일정에 도장찍기
+function setSticker() {
+
+}
+
+//챌린지 설정
+function setChallenge() {
+    const challengeSetting = new FormData(document.getElementById("setChallengeForm"))
+    console.log(challengeSetting.keys());
+}
+
+setChallenge()
 function init() {
     if (!localStorage.getItem("habitChallengeData")){
         defaultData = {};
         [...Array(30)].forEach((k,i)=>{
             defaultData[i+1] = 0
         })
-        
+
         localStorage.setItem("habitChallengeData", JSON.stringify({
             title:"제목을 설정해주세요",
-            data:defaultData
+            data:defaultData,
+            dateLength:30,
         }))
     }
     
     const successList = JSON.parse(localStorage.getItem("habitChallengeData"))
     console.log(successList.data);
     
+    document.getElementById("challenge-name").value = successList.title
+    document.getElementById(`day_${successList.dateLength}`).checked = true
     const app = document.getElementsByClassName("table-item-wrap")[0]
     app.innerHTML=""
     for (const key in successList.data) {
         if (Object.hasOwnProperty.call(successList.data, key)) {
             const stamp = successList.data[key];
-            const el = document.createElement("div");
-            el.className = "table-item";
-            el.id = `item${key}`
-            el.innerHTML = key
+            const el = createDom(dom="div", id=`item${key}`,className="table-item", child=key)
             el.setAttribute('data-value', stamp)
             app.appendChild(el)
         }
     }
 }
+
 
 init()
 
@@ -92,9 +116,8 @@ tableItem.forEach((item, idx) => {
 function stickerStyle(i, e){
     // margin 값을 포함한 tableItem의 width값
     const tableItemWidth = e.offsetWidth + parseInt(window.getComputedStyle(e).getPropertyValue("margin-bottom"), 10);
-
+    console.log(i);
     const index = i%5;
-
     selectSticker.style.top = `${tableItemWidth+e.offsetTop}px`;
 
     if(index >= 1) {
