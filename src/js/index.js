@@ -10,8 +10,7 @@ let selectedItem;
 let appData = {}
 
 window.addEventListener("keydown",function(e) {
-    if(e.key==13){
-
+    if(e.keyCode===13){
         e.preventDefault()
     }
 })
