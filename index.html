@@ -7,6 +7,8 @@
     <title>30Days Habit Challenge</title>
     <link rel="stylesheet" href="src/style/reset.css">
     <link rel="stylesheet" href="src/style/style.css">
+    <!-- 화면 캡쳐 CDN -->
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 </head>
 <body>
     <header class="header">
@@ -35,19 +37,19 @@
                 <div class="select-sticker">
                     <h3>"오늘의 나는??</h3>
                     <ul class="sticker-list">
-                        <li class="sticker-item">
+                        <li class="sticker-item" id='fun'>
                             <img src="./src/img/sticker_1.png" alt="sticker" class="sticker">
                             <span>신남</span>
                         </li>
-                        <li class="sticker-item">
+                        <li class="sticker-item" id='awesome'>
                             <img src="./src/img/sticker_2.png" alt="sticker" class="sticker">
                             <span>기가막힘</span>
                         </li>
-                        <li class="sticker-item">
+                        <li class="sticker-item" id='good'>
                             <img src="./src/img/sticker_3.png" alt="sticker" class="sticker">
                             <span>굿!</span>
                         </li>
-                        <li class="sticker-item">
+                        <li class="sticker-item" id='sad'>
                             <img src="./src/img/sticker_4.png" alt="sticker" class="sticker">
                             <span>&#40;...&#41;</span>
                         </li>
@@ -73,16 +75,16 @@
                 <article class="input">
                     <div class="input-name">
                         <h3 class="input-title">챌린지 이름</h3>
-                        <input type="text" name="challenge-name" id="challenge-name">
+                        <input type="text" name="challengeName" id="challenge-name">
                     </div>
                     <div class="input-term">
                         <h3 class="input-title">챌린지 기간</h3>
                         <div class="input-wrap">
-                            <input type="radio" name="challenge-term" id="day_15" value="15">
+                            <input type="radio" name="challengeTerm" id="day_15" value="15">
                             <label for="day_15">15일</label>
-                            <input type="radio" name="challenge-term" id="day_25" value="25">
+                            <input type="radio" name="challengeTerm" id="day_25" value="25">
                             <label for="day_25">25일</label>
-                            <input type="radio" name="challenge-term" id="day_30" value="30">
+                            <input type="radio" name="challengeTerm" id="day_30" value="30">
                             <label for="day_30" value="30">30일</label>
                         </div>
                     </div>
@@ -90,7 +92,7 @@
                 <section class="modal-buttons">
                     <h2 class="sr-only">모달 버튼 리스트</h2>
                     <button type="button" class="cancel-btn">취소하기</button>
-                    <button type="button" class="save-btn fill">저장하기</button>
+                    <button type="button" class="save-btn set-btn fill">저장하기</button>
                 </section>
             </form>
         </div>

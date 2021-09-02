@@ -221,7 +221,7 @@ button.fill {
 }
 
 /* 스티커 이미지 */
-.select-sticker img {
+.sticker {
     width: 60px;
     height: 60px;
     margin-bottom: 5px;
@@ -445,7 +445,7 @@ button.fill {
         font-size: 10px;
     }
 
-    .select-sticker img {
+    .sticker{
         width: 42px;
         height: 42px;
     }
