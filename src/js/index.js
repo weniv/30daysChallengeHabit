@@ -15,6 +15,19 @@ window.addEventListener("keydown",function(e) {
     }
 })
 
+// function test() {
+//     req = window.location.search.substr(1).split('&')
+//     if(req!=""){
+//         const tempJson = {}
+//         req.forEach((i)=>{
+//             q = i.split("=")
+//             key = q[0]
+//             val = q[1]
+//             tempJson[key]=val
+//         })
+//     }
+// }
+// test()
 
 setBtn.addEventListener("click", setChallenge)
 settingBtn.addEventListener("click", function() {
@@ -61,10 +74,10 @@ function saveAppData() {
 //일정에 도장찍기
 function setSticker(idx) {
     const selectedDom = document.getElementById(`item${selectedItem+1}`)
-    console.log(selectedDom.dataset.value);
     selectedDom.dataset.value = idx
     selectedDom.innerHTML=""
     const sticker = stickers[idx].cloneNode()
+    sticker.addEventListener('click', addModalEvt)
     selectedDom.append(sticker)
     appData['data'][selectedItem+1] = idx
     saveAppData()
@@ -110,7 +123,7 @@ function addModalEvt(item, idx) {
                 selectSticker.classList.remove("active");
             }
         };
-    });
+    }, {capture: true});
 }
 
 function setTable() {
@@ -147,7 +160,7 @@ function init() {
         localStorage.setItem("habitChallengeData", JSON.stringify({
             challengeName:"제목을 설정해주세요",
             data:defaultData,
-            challengeTerm:30,
+            challengeTerm:25,
         }))
     }
     appData = JSON.parse(localStorage.getItem("habitChallengeData"))
