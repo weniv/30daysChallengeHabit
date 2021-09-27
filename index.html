@@ -11,60 +11,62 @@
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 </head>
 <body>
-    <header class="header">
-        <div class="visitors">
-            <span>방문자 수 :</span>
-            <span>00</span>
-        </div>
-    </header>
+<div class="container">
+    
     <main class="main-contents">
-        <header class="contents-header">
-            <h2>나의 챌린지</h1>
-            <h1 class="challenge-title"></h2>
+        <header class="header">
+            <div class="visitors">
+                <span>방문자 수 :</span>
+                <span>00</span>
+            </div>
         </header>
-        <article>
-            <section class="progress">
-                <h2 class="sr-only">진행 상황 그래프</h2>
-                <div class="progress-bar-cont">
-                    <div class="progress-bar"></div>
-                </div>
-                <div class="progress-success">성공! 🎉</div>
-            </section>
-            <section class="challenge-table">
-                <h2 class="sr-only">챌린지 스티커 표</h2>
-                <div class="table-item-wrap">
-                </div>
-                <div class="select-sticker">
-                    <h3>"오늘의 나는??</h3>
-                    <ul class="sticker-list">
-                        <li class="sticker-item" id='fun'>
-                            <img src="./src/img/sticker_1.png" alt="sticker" class="sticker">
-                            <span>신남</span>
-                        </li>
-                        <li class="sticker-item" id='awesome'>
-                            <img src="./src/img/sticker_2.png" alt="sticker" class="sticker">
-                            <span>기가막힘</span>
-                        </li>
-                        <li class="sticker-item" id='good'>
-                            <img src="./src/img/sticker_3.png" alt="sticker" class="sticker">
-                            <span>굿!</span>
-                        </li>
-                        <li class="sticker-item" id='sad'>
-                            <img src="./src/img/sticker_4.png" alt="sticker" class="sticker">
-                            <span>&#40;...&#41;</span>
-                        </li>
-                    </ul>
-                </div>
-            </section>
-            <section class="main-buttons">
-                <h2 class="sr-only">메인 버튼 리스트</h2>
-                <button type="button" class="setting-btn fill">챌린지 설정하기</button>
-                <div class="btn-right">
-                    <button type="button" class="save-btn">저장하기</button>
-                    <button type="button" class="share-btn">공유하기</button>
-                </div>
-            </section>
-        </article>
+        <article class="challenge-contents">
+            <header class="contents-header">
+                <h2>나의 챌린지</h1>
+                <h1 class="challenge-title"></h2>
+            </header>
+                <section class="progress">
+                    <h2 class="sr-only">진행 상황 그래프</h2>
+                    <div class="progress-bar-cont">
+                        <div class="progress-bar"></div>
+                    </div>
+                    <div class="progress-success">성공! 🎉</div>
+                </section>
+                <section class="challenge-table">
+                    <h2 class="sr-only">챌린지 스티커 표</h2>
+                    <div class="table-item-wrap">
+                    </div>
+                    <div class="select-sticker">
+                        <h3>"오늘의 나는??</h3>
+                        <ul class="sticker-list">
+                            <li class="sticker-item" id='fun'>
+                                <img src="./src/img/sticker_1.png" alt="sticker" class="sticker">
+                                <span>신남</span>
+                            </li>
+                            <li class="sticker-item" id='awesome'>
+                                <img src="./src/img/sticker_2.png" alt="sticker" class="sticker">
+                                <span>기가막힘</span>
+                            </li>
+                            <li class="sticker-item" id='good'>
+                                <img src="./src/img/sticker_3.png" alt="sticker" class="sticker">
+                                <span>굿!</span>
+                            </li>
+                            <li class="sticker-item" id='sad'>
+                                <img src="./src/img/sticker_4.png" alt="sticker" class="sticker">
+                                <span>&#40;...&#41;</span>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <section class="main-buttons">
+                    <h2 class="sr-only">메인 버튼 리스트</h2>
+                    <button type="button" class="setting-btn fill">챌린지 설정하기</button>
+                    <div class="btn-right">
+                        <button type="button" class="save-btn">저장하기</button>
+                        <button type="button" class="share-btn">공유하기</button>
+                    </div>
+                </section>
+            </article>
     </main>
     <section class="setting-modal">
         <div class="modal-wrap">
@@ -97,7 +99,9 @@
             </form>
         </div>
     </section>
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+</div>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
     <script src="src/js/index.js" type="text/javascript"></script>
 </body>
 </html>

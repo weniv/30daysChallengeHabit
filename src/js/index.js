@@ -9,11 +9,15 @@ const app = document.getElementsByClassName("table-item-wrap")[0];
 let selectedItem;
 let appData = {}
 
+const saveBtn = document.querySelector('.save-btn');
+
 window.addEventListener("keydown",function(e) {
     if(e.keyCode===13){
         e.preventDefault()
     }
 })
+
+
 
 // function test() {
 //     req = window.location.search.substr(1).split('&')
@@ -185,9 +189,6 @@ const challengeTable = document.querySelector(".challenge-table");
 const selectSticker = document.querySelector(".select-sticker");
 
 
-
-
-
 stickers.forEach((item,idx)=>{
     const idx1 = idx
     item.addEventListener("click", ()=>setSticker(idx1))
@@ -205,3 +206,16 @@ function stickerStyle(i, e){
     selectSticker.style.left = index <= 1?`${e.offsetLeft}px`: `${e.offsetLeft-e.offsetWidth*index-e.style.marginTop}px`;
     selectedItem = i
 }
+
+//스크린샷 기능
+async function screen() {
+    const cv = await html2canvas(document.body)
+    const imgData = cv.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream")
+    const vDom = document.createElement('a')
+    vDom.href = imgData
+    vDom.download = "myChallenge.jpg"
+    vDom.click()
+    
+}
+
+saveBtn.addEventListener('click',screen)

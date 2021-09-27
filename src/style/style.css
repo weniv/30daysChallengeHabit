@@ -46,27 +46,31 @@ button.fill {
 
 /* 헤더 */
 .header {
+    width: 100%;
     background-color: #956BD9;
     height: 403px;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
     display: flex;
     justify-content: center;
+    position:absolute;
+    z-index: -1;
+    
 }
 
 /* 헤더 - 방문자 수 */
 .header .visitors {
-    width: 1170px;
+    width: 100%;
     padding: 28px 0 0 20px;
     font-size: 13px;
 }
 
 /* 메인 컨텐츠 */
 .main-contents {
-    position: absolute;
-    top: 116px;
-    left: 50%;
-    transform: translateX(-50%);
+    /* position: absolute;
+    top: 116px; */
+    /* left: 50%;
+    transform: translateX(-50%); */
     width: 100%;
 }
 
@@ -94,6 +98,9 @@ button.fill {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.challenge-contents{
+    padding-top: 110px;
 }
 
 /* 상태바 */
