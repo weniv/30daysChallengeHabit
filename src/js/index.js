@@ -160,7 +160,6 @@ function setTable() {
 }
 
 
-
 function init() {
     // 최초 데이터 없을때 초기화
     if (!localStorage.getItem("habitChallengeData")){
@@ -212,8 +211,11 @@ function stickerStyle(i, e){
     // margin 값을 포함한 tableItem의 width값
     const tableItemWidth = e.offsetWidth + parseInt(window.getComputedStyle(e).getPropertyValue("margin-bottom"), 10);
     const index = i % 5;
-    selectSticker.style.top = i < 16 ? `${tableItemWidth+e.offsetTop}px` : `${e.offsetTop-selectSticker.offsetHeight}px`;
-    selectSticker.style.left = index <= 1 ? `${e.offsetLeft}px` : `${tableItem[1].offsetLeft}px`;
+
+    selectSticker.style.top = `${tableItemWidth+e.offsetTop}px`;
+    selectSticker.style.left = `${e.offsetLeft}px`;
+    selectSticker.style.left = index >= 1 ? `${tableItem[1].offsetLeft}px` : `${e.offsetLeft}px`;
+
     selectedItem = i;
 }
 
