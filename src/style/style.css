@@ -46,27 +46,31 @@ button.fill {
 
 /* 헤더 */
 .header {
+    width: 100%;
     background-color: #956BD9;
     height: 403px;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
     display: flex;
     justify-content: center;
+    position:absolute;
+    z-index: -1;
+    
 }
 
 /* 헤더 - 방문자 수 */
 .header .visitors {
-    width: 1170px;
+    width: 100%;
     padding: 28px 0 0 20px;
     font-size: 13px;
 }
 
 /* 메인 컨텐츠 */
 .main-contents {
-    position: absolute;
-    top: 116px;
-    left: 50%;
-    transform: translateX(-50%);
+    /* position: absolute;
+    top: 116px; */
+    /* left: 50%;
+    transform: translateX(-50%); */
     width: 100%;
 }
 
@@ -94,6 +98,9 @@ button.fill {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.challenge-contents{
+    padding-top: 110px;
 }
 
 /* 상태바 */
@@ -221,7 +228,7 @@ button.fill {
 }
 
 /* 스티커 이미지 */
-.select-sticker img {
+.sticker {
     width: 60px;
     height: 60px;
     margin-bottom: 5px;
@@ -248,8 +255,8 @@ button.fill {
     margin-right: 12px;
 }
 
-/* 챌린지 수정 - 모달창 */
-.setting-modal {
+/*모달창 */
+.modal {
     display: none;
     position: fixed;
     top: 0;
@@ -260,8 +267,44 @@ button.fill {
     background-color: rgba(0, 0, 0, 0.2);
 }
 
+
+/* 공유를 위한 모달 및 아이콘 */
+.share-modal-wrap{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.link-icon { position: relative;
+    display: flex;
+    font-size: 14px;
+    margin: 10px;
+    font-weight: 500;
+    padding-top: 100px;
+    justify-content: center;
+    text-decoration: none;
+    color: black;
+
+}
+.icon-wrap{
+    display: flex;
+    justify-content: space-evenly;
+}
+.link-icon{
+    width: 60px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.link-icon.twitter { 
+    background-image: url(../img/icon/icon-twitter.png); 
+}
+.link-icon.facebook { 
+    background-image: url(../img/icon/icon-facebook.png);
+} 
+.link-icon.kakao { 
+    background-image: url(../img/icon/icon-kakao.png);
+}
 /* 챌린지 설정하기 버튼 클릭시 active 클래스 추가 */
-.setting-modal.active {
+.modal.active {
     display: block;
 }
 
@@ -445,7 +488,7 @@ button.fill {
         font-size: 10px;
     }
 
-    .select-sticker img {
+    .sticker{
         width: 42px;
         height: 42px;
     }
@@ -510,3 +553,5 @@ button.fill {
         width: 176px;
     }
 }
+
+
