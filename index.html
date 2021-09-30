@@ -23,6 +23,7 @@
         <article class="challenge-contents">
             <header class="contents-header">
                 <h2>나의 챌린지</h1>
+                <h3>시작 일자 : <span id="start-date"></span></h3>
                 <h1 class="challenge-title"></h2>
             </header>
                 <section class="progress">
@@ -68,7 +69,7 @@
                 </section>
             </article>
     </main>
-    <section class="setting-modal">
+    <section class="modal setting">
         <div class="modal-wrap">
             <header>
                 <h2>챌린지 설정</h2>
@@ -99,7 +100,20 @@
             </form>
         </div>
     </section>
+    <section class="modal share">
+        <div class="modal-wrap share-modal-wrap">
+            <div class="icon-wrap">
 
+                <a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitter();">트위터</a>
+                <a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook();">페이스북</a>   
+                
+            </div>
+
+            <button type="button" class="cancel-btn">취소하기</button> 
+            <!-- 추후 추가 -->
+            <!-- <a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao();"></a>  -->
+        </div>
+    </section>
 </div>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
     <script src="src/js/index.js" type="text/javascript"></script>

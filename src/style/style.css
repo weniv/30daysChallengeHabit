@@ -255,8 +255,8 @@ button.fill {
     margin-right: 12px;
 }
 
-/* 챌린지 수정 - 모달창 */
-.setting-modal {
+/*모달창 */
+.modal {
     display: none;
     position: fixed;
     top: 0;
@@ -267,8 +267,44 @@ button.fill {
     background-color: rgba(0, 0, 0, 0.2);
 }
 
+
+/* 공유를 위한 모달 및 아이콘 */
+.share-modal-wrap{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.link-icon { position: relative;
+    display: flex;
+    font-size: 14px;
+    margin: 10px;
+    font-weight: 500;
+    padding-top: 100px;
+    justify-content: center;
+    text-decoration: none;
+    color: black;
+
+}
+.icon-wrap{
+    display: flex;
+    justify-content: space-evenly;
+}
+.link-icon{
+    width: 60px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.link-icon.twitter { 
+    background-image: url(../img/icon/icon-twitter.png); 
+}
+.link-icon.facebook { 
+    background-image: url(../img/icon/icon-facebook.png);
+} 
+.link-icon.kakao { 
+    background-image: url(../img/icon/icon-kakao.png);
+}
 /* 챌린지 설정하기 버튼 클릭시 active 클래스 추가 */
-.setting-modal.active {
+.modal.active {
     display: block;
 }
 
@@ -517,3 +553,5 @@ button.fill {
         width: 176px;
     }
 }
+
+

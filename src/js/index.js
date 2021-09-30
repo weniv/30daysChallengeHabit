@@ -1,7 +1,10 @@
 // 챌린지 설정(수정)하기 모달창 띄우기
 const settingBtn = document.querySelector(".setting-btn");
-const settingModal = document.querySelector(".setting-modal");
-const cancelBtn = settingModal.querySelector(".cancel-btn");
+const shareBtn = document.querySelector(".share-btn")
+const settingModal = document.querySelector(".setting");
+const shareModal = document.querySelector(".share");
+
+const cancelBtns = document.querySelectorAll(".cancel-btn");
 const stickers = document.querySelectorAll(".sticker");
 const setBtn = document.querySelector(".set-btn");
 const progressBar = document.querySelector(".progress-bar");
@@ -17,38 +20,34 @@ window.addEventListener("keydown",function(e) {
     }
 })
 
-
-
-// function test() {
-//     req = window.location.search.substr(1).split('&')
-//     if(req!=""){
-//         const tempJson = {}
-//         req.forEach((i)=>{
-//             q = i.split("=")
-//             key = q[0]
-//             val = q[1]
-//             tempJson[key]=val
-//         })
-//     }
-// }
-// test()
-
 setBtn.addEventListener("click", setChallenge)
 settingBtn.addEventListener("click", function() {
     settingModal.classList.add("active");
 });
 
-if(cancelBtn){
-    cancelBtn.addEventListener("click", function() {
+shareBtn.addEventListener("click", function() {
+    shareModal.classList.add("active");
+});
+[...cancelBtns].forEach(btn =>{
+    btn.addEventListener("click", function() {
         settingModal.classList.remove("active");
+        shareModal.classList.remove("active");
     });
-}
+    }
+    
+)
+
 
 // 모달창 닫기
 window.onclick = function(e) {
     if(settingModal) {
         if(e.target == settingModal) {
             settingModal.classList.remove("active");
+        }
+    }
+    if(shareModal) {
+        if(e.target == shareModal) {
+            shareModal.classList.remove("active");
         }
     }
 };
@@ -99,6 +98,7 @@ function setChallenge() {
         }
     }
     settingModal.classList.remove("active");
+    document.getElementById("start-date").innerHTML = appData.startDate
     document.getElementsByClassName("challenge-title")[0].innerHTML = appData.challengeName
     setTable()
     saveAppData()
@@ -160,18 +160,20 @@ function init() {
         [...Array(30)].forEach((k,i)=>{
             defaultData[i+1] = 4
         })
-
+        const date = new Date
         localStorage.setItem("habitChallengeData", JSON.stringify({
             challengeName:"제목을 설정해주세요",
             data:defaultData,
             challengeTerm:25,
+            startDate:date.toDateString()
         }))
     }
     appData = JSON.parse(localStorage.getItem("habitChallengeData"))
     document.getElementById("challenge-name").value = appData.challengeName
     document.getElementById(`day_${appData.challengeTerm}`).checked = true
-
+    document.getElementById('')
     document.getElementsByClassName("challenge-title")[0].innerHTML = appData.challengeName
+    document.getElementById("start-date").innerHTML = appData.startDate
 
     // const app = document.getElementsByClassName("table-item-wrap")[0]
 
@@ -191,7 +193,9 @@ const selectSticker = document.querySelector(".select-sticker");
 
 stickers.forEach((item,idx)=>{
     const idx1 = idx
-    item.addEventListener("click", ()=>setSticker(idx1))
+    item.addEventListener("click", ()=>{
+        setSticker(idx1)
+    })
 })
 
 
@@ -208,14 +212,26 @@ function stickerStyle(i, e){
 }
 
 //스크린샷 기능
-async function screen() {
+async function screenShot() {
     const cv = await html2canvas(document.body)
     const imgData = cv.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream")
     const vDom = document.createElement('a')
     vDom.href = imgData
     vDom.download = "myChallenge.jpg"
     vDom.click()
-    
 }
 
-saveBtn.addEventListener('click',screen)
+function shareFacebook() {
+    let url = window.location.href;
+    let facebook = 'http://www.facebook.com/sharer/sharer.php?u=';
+    let link = facebook + url;
+    window.open(link);
+}
+function shareTwitter() {
+    
+    let url = window.location.href;
+    let sendText = "하루한번 챌린지!"; // 전달할 텍스트
+    let twitter = "https://twitter.com/intent/tweet?text="
+    window.open(twitter + sendText + "&url=" + url);
+}
+saveBtn.addEventListener('click',screenShot)
