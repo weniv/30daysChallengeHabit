@@ -91,6 +91,7 @@ function setSticker(idx) {
 function setChallenge() {
     const challengeSetting = new FormData(document.getElementById("setChallengeForm"))
     const datas = Array.from(challengeSetting)
+    const prev_challengeName = appData.challengeName
     for (const i in datas) {
         if (Object.hasOwnProperty.call(datas, i)) {
             const data = datas[i];
@@ -98,8 +99,15 @@ function setChallenge() {
         }
     }
     settingModal.classList.remove("active");
-    document.getElementById("start-date").innerHTML = appData.startDate
-    document.getElementsByClassName("challenge-title")[0].innerHTML = appData.challengeName
+    if(prev_challengeName != appData.challengeName){
+        const defaultData = {};
+        [...Array(30)].forEach((k,i)=>{
+            defaultData[i+1] = 4
+        })
+        appData.data = defaultData
+        document.getElementsByClassName("challenge-title")[0].innerHTML = appData.challengeName;
+        document.getElementById("start-date").innerHTML = appData.startDate;
+    }
     setTable()
     saveAppData()
 
@@ -156,7 +164,7 @@ function setTable() {
 function init() {
     // 최초 데이터 없을때 초기화
     if (!localStorage.getItem("habitChallengeData")){
-        defaultData = {};
+        const defaultData = {};
         [...Array(30)].forEach((k,i)=>{
             defaultData[i+1] = 4
         })
