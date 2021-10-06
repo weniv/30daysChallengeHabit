@@ -2,6 +2,8 @@
 
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
 
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
+
 /* 유틸리티 */
 /* 스크린리더 */
 .sr-only {
@@ -26,6 +28,10 @@ body {
 
 button, input {
     font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+}
+
+a {
+    text-decoration: none;
 }
 
 /* 버튼 공통 스타일 */
@@ -109,7 +115,7 @@ button.fill {
 }
 
 .challenge-contents{
-    padding: 110px 0 40px;
+    padding: 110px 0 131px;
 }
 
 /* 상태바 */
@@ -263,6 +269,63 @@ button.fill {
 .main-buttons .save-btn {
     margin-right: 12px;
 }
+
+/* footer */
+footer {
+    left: 0;
+    bottom: 0;
+    background-color: #FFF;
+    color: #828282;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 17px;
+    display: flex;
+    justify-content: center;
+    padding: 34px 0 32px;
+}
+
+.footer-wrapper {
+    display: flex; 
+    justify-content: space-between;
+    width: 1150px;
+    padding: 0 20px;
+}
+
+.copyright {
+    display: flex;
+    align-items: center;
+}
+
+.copyright .logo {
+    width: 100px;
+    height: 20px;
+    margin-right: 36px;
+}
+
+.copyright .logo img {
+    width: 100%;
+}
+
+footer .sns-list {
+    display: flex;
+    align-items: center;
+}
+
+footer .sns-list a {
+    width: 24px;
+    height: 24px;
+    margin-left: 20px;
+}
+
+footer .sns-list a:first-child {
+    margin: 0;
+}
+
+footer .sns-list a > img {
+    width: 100%;
+}
+
 
 /*모달창 */
 .modal {
@@ -422,6 +485,11 @@ button.fill {
     font-size: 14px;
     cursor: pointer;
     text-align: center;
+    margin-right: 11px;
+}
+
+.input-term input[type=radio] + label:last-child {
+    margin: 0;
 }
 
 /* radio 버튼을 클릭했을 때 label 스타일 */
@@ -601,3 +669,33 @@ button.fill {
 }
 
 
+@media all and (max-width: 700px) {
+    footer {
+        font-size: 9px;
+        line-height: 13px;
+        padding: 25px 0;
+    }
+    
+    .footer-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .copyright {
+        flex-direction: column;
+    }
+    
+    .copyright .logo {
+        margin: 0;
+    }
+
+    .copyright .copyright-text {
+        margin: 18px 0 30px;
+    }
+
+    footer .sns-list a {
+        width: 22px;
+        height: 22px;
+        margin-left: 22px;
+    }
+}

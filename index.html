@@ -12,7 +12,6 @@
 </head>
 <body>
 <div class="container">
-    
     <main class="main-contents">
         <header class="header">
             <div class="visitors">
@@ -25,48 +24,75 @@
                 <p class="small-p">시작 일자 : <span id="start-date"></span></p>
                 <h1 class="challenge-title"></h2>
             </header>
-                <section class="progress">
-                    <h2 class="sr-only">진행 상황 그래프</h2>
-                    <div class="progress-bar-cont">
-                        <div class="progress-bar"></div>
+            <section class="progress">
+                <h2 class="sr-only">진행 상황 그래프</h2>
+                <div class="progress-bar-cont">
+                    <div class="progress-bar"></div>
+                </div>
+                <div class="progress-success">성공! 🎉</div>
+            </section>
+            <section class="challenge-table">
+                <h2 class="sr-only">챌린지 스티커 표</h2>
+                <div class="table-item-wrap">
+                </div>
+                <div class="select-sticker">
+                    <h3>"오늘의 나는??</h3>
+                    <ul class="sticker-list">
+                        <li class="sticker-item" id='fun'>
+                            <img src="./src/img/sticker_1.png" alt="sticker" class="sticker">
+                            <span>신남</span>
+                        </li>
+                        <li class="sticker-item" id='awesome'>
+                            <img src="./src/img/sticker_2.png" alt="sticker" class="sticker">
+                            <span>기가막힘</span>
+                        </li>
+                        <li class="sticker-item" id='good'>
+                            <img src="./src/img/sticker_3.png" alt="sticker" class="sticker">
+                            <span>굿!</span>
+                        </li>
+                        <li class="sticker-item" id='sad'>
+                            <img src="./src/img/sticker_4.png" alt="sticker" class="sticker">
+                            <span>&#40;...&#41;</span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section class="main-buttons">
+                <h2 class="sr-only">메인 버튼 리스트</h2>
+                <button type="button" class="setting-btn fill">챌린지 설정하기</button>
+                <div class="btn-right">
+                    <button type="button" class="save-btn">저장하기</button>
+                    <button type="button" class="share-btn">공유하기</button>
+                </div>
+            </section>
+        </article>
+        <footer>
+            <div class="footer-wrapper">
+                <div class="copyright">
+                    <div class="logo">
+                        <img src="src/img/weniv_logo.png" alt="weniv">
                     </div>
-                    <div class="progress-success">성공! 🎉</div>
-                </section>
-                <section class="challenge-table">
-                    <h2 class="sr-only">챌린지 스티커 표</h2>
-                    <div class="table-item-wrap">
-                    </div>
-                    <div class="select-sticker">
-                        <h3>"오늘의 나는??</h3>
-                        <ul class="sticker-list">
-                            <li class="sticker-item" id='fun'>
-                                <img src="./src/img/sticker_1.png" alt="sticker" class="sticker">
-                                <span>신남</span>
-                            </li>
-                            <li class="sticker-item" id='awesome'>
-                                <img src="./src/img/sticker_2.png" alt="sticker" class="sticker">
-                                <span>기가막힘</span>
-                            </li>
-                            <li class="sticker-item" id='good'>
-                                <img src="./src/img/sticker_3.png" alt="sticker" class="sticker">
-                                <span>굿!</span>
-                            </li>
-                            <li class="sticker-item" id='sad'>
-                                <img src="./src/img/sticker_4.png" alt="sticker" class="sticker">
-                                <span>&#40;...&#41;</span>
-                            </li>
-                        </ul>
-                    </div>
-                </section>
-                <section class="main-buttons">
-                    <h2 class="sr-only">메인 버튼 리스트</h2>
-                    <button type="button" class="setting-btn fill">챌린지 설정하기</button>
-                    <div class="btn-right">
-                        <button type="button" class="save-btn">저장하기</button>
-                        <button type="button" class="share-btn">공유하기</button>
-                    </div>
-                </section>
-            </article>
+                    <p class="copyright-text">
+                        본 서비스 내 이미지 및 콘텐츠의 저작권은 주식회사 WeNiv에 있습니다.<br>
+                        수정 및 재배포, 무단 도용 시 법적인 문제가 발생할 수 있습니다.
+                    </p>
+                </div>
+                <div class="sns-list">
+                    <a href="index.html">
+                        <img src="src/img/home.png" alt="home">
+                    </a>
+                    <a href="https://www.youtube.com/channel/UC4GnvNKtuJ4cqWsYjxNxAEQ">
+                        <img src="src/img/youtube.png" alt="home">
+                    </a>
+                    <a href="https://www.instagram.com/weniv_official/?hl=ko">
+                        <img src="src/img/instagram.png" alt="home">
+                    </a>
+                    <a href="https://www.facebook.com/Jejucoding/">
+                        <img src="src/img/facebook.png" alt="home">
+                    </a>
+                </div>
+            </div>
+        </footer>
     </main>
     <section class="modal setting">
         <div class="modal-wrap">
@@ -89,6 +115,8 @@
                             <label for="day_25">25일</label>
                             <input type="radio" name="challengeTerm" id="day_30" value="30">
                             <label for="day_30" value="30">30일</label>
+                            <input type="radio" name="challengeTerm" id="day_60" value="60">
+                            <label for="day_60" value="60">60일</label>
                         </div>
                     </div>
                 </article>
@@ -103,7 +131,7 @@
     <section class="modal share">
         <div class="modal-wrap share-modal-wrap">
             <header>
-                <h2>SNS 공유하기</h2>
+                <h2>서비스 공유하기</h2>
             </header>
             <div class="icon-wrap">
 
