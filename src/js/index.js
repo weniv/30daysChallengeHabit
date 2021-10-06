@@ -169,7 +169,7 @@ function init() {
     // 최초 데이터 없을때 초기화
     if (!localStorage.getItem("habitChallengeData")){
         const defaultData = {};
-        [...Array(30)].forEach((k,i)=>{
+        [...Array(60)].forEach((k,i)=>{
             defaultData[i+1] = 4
         })
         const date = new Date
