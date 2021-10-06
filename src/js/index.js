@@ -104,7 +104,11 @@ function setChallenge() {
         [...Array(30)].forEach((k,i)=>{
             defaultData[i+1] = 4
         })
+
+        const date = new Date
         appData.data = defaultData
+
+        appData.startDate = date.toDateString()
         document.getElementsByClassName("challenge-title")[0].innerHTML = appData.challengeName;
         document.getElementById("start-date").innerHTML = appData.startDate;
     }
