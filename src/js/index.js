@@ -105,7 +105,11 @@ function setChallenge() {
         [...Array(30)].forEach((k,i)=>{
             defaultData[i+1] = 4;
         })
-        appData.data = defaultData;
+        const date = new Date
+        appData.data = defaultData
+
+        appData.startDate = date.toDateString()
+
         document.getElementsByClassName("challenge-title")[0].innerHTML = appData.challengeName;
         document.getElementById("start-date").innerHTML = appData.startDate;
     }
@@ -164,8 +168,8 @@ function init() {
     // 최초 데이터 없을때 초기화
     if (!localStorage.getItem("habitChallengeData")){
         const defaultData = {};
-        [...Array(30)].forEach((k,i)=>{
-            defaultData[i+1] = 4;
+        [...Array(60)].forEach((k,i)=>{
+            defaultData[i+1] = 4
         })
         const date = new Date
         localStorage.setItem("habitChallengeData", JSON.stringify({
