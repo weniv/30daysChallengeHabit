@@ -87,7 +87,7 @@ button.fill {
 /* 메인 컨텐츠 - 헤더 */
 .contents-header {
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 45px;
 }
 
 .contents-header h2 {
@@ -97,14 +97,14 @@ button.fill {
 }
 
 .small-p{
-    font-size: 10px;
+    font-size: 12px;
 }
 
 /* 챌린지 이름 */
 .challenge-title {
     font-size: 36px;
     font-weight: 700;
-    padding: 20px 20px 0;
+    padding: 0 20px 30px;
 }
 
 /* 메인 컨텐츠 - article */
