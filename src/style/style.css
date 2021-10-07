@@ -576,6 +576,11 @@ footer .sns-list a > img {
     border-radius: 5px;
 }
 
+.share-info-text {
+    margin: 10px;
+    line-height: 10px;
+}
+
 .confirm-msg::after {
     position: absolute;
     content: "";
