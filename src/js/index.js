@@ -159,8 +159,6 @@ function setTable() {
     tableItem.forEach((item, idx) => {
         addModalEvt(item,idx);
     });
-
-
 }
 
 
@@ -173,7 +171,7 @@ function init() {
         })
         const date = new Date
         localStorage.setItem("habitChallengeData", JSON.stringify({
-            challengeName:"제목을 설정해주세요",
+            challengeName:"제목을 설정해 주세요",
             data:defaultData,
             challengeTerm:25,
             startDate:date.toDateString()
@@ -193,6 +191,22 @@ function init() {
 }
 
 init();
+
+// 초기화 버튼
+const resetBtn = document.querySelector(".reset-btn");
+const confirmMsg = document.querySelector(".confirm-msg");
+
+resetBtn.addEventListener("click", function(){
+    confirmMsg.style.display = "block";
+    resetBtn.innerText = "네!";
+});
+
+window.onclick = function(e) {
+    if(e.target != resetBtn) {
+        confirmMsg.style.display = "none";
+        resetBtn.innerText = "챌린지 초기화";
+    }
+};
 
 
 // 스티커 추가 이벤트

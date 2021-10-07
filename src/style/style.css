@@ -263,11 +263,27 @@ button.fill {
 
 /* 저장, 공유 버튼 */
 .main-buttons .save-btn, .main-buttons .share-btn {
-    width: 96px;
+    width: 119px;
 }
 
 .main-buttons .save-btn {
     margin-right: 12px;
+}
+
+.main-buttons .share-btn {
+    position: relative;
+    padding: 0 18px 0 45px;
+}
+
+.main-buttons .share-btn::after {
+    position: absolute;
+    content: "";
+    left: 18px;
+    top: 50%;
+    transform: translateY(-10px);
+    background: url(../img/share.png);
+    width: 20px;
+    height: 20px;
 }
 
 /* footer */
@@ -339,54 +355,75 @@ footer .sns-list a > img {
     background-color: rgba(0, 0, 0, 0.2);
 }
 
-
-/* 공유를 위한 모달 및 아이콘 */
-.share-modal-wrap{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+.modal-wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: 426px;
+    background-color: #FFF;
+    box-sizing: border-box;
+    padding: 26px 28px 28px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
 }
 
+
+/* 공유를 위한 모달 및 아이콘 */
 .icon-wrap{
     display: flex;
-    justify-content: space-evenly;
-    padding: 22px 0 41px;
+    padding: 22px 22px 0;
     border-top: 1px solid #E0E0E0;
-    border-bottom: 1px solid #E0E0E0;
     margin-bottom: 22px;
 }
 
-.link-icon{
+.icon-wrap .save-btn, .link-icon {
     position: relative;
-    display: flex;
-    font-size: 14px;
+    font-size: 10px;
     font-weight: 500;
-    justify-content: center;
     text-decoration: none;
-    color: black;
-    width: 60px;
-    height: 40px;
+    color: #4F4F4F;
+    width: 58px;
+    height: 58px;
     background-position: center;
     background-repeat: no-repeat;
+    background-size: contain;
+    margin-right: 38px;
+}
+
+.icon-wrap .save-btn {
+    border: none;
+    border-radius: 0%;
+    background-image: url(../img/img_save.png);
 }
 
 .link-icon.twitter { 
-    background-image: url(../img/icon/icon-twitter.png); 
+    background-image: url(../img/twitter_logo.png);
 }
 
-.link-icon.facebook { 
-    background-image: url(../img/icon/icon-facebook.png);
+.link-icon.twitter { 
+    background-image: url(../img/twitter_logo.png); 
+}
+
+.link-icon.facebook {
+    margin: 0;
+    background-image: url(../img/face_logo.png);
 } 
 
 .link-icon.kakao { 
-    background-image: url(../img/icon/icon-kakao.png);
+    background-image: url(../img/kakao_logo.png);
 }
 
-.link-icon.twitter::after, .link-icon.facebook::after, .link-icon.kakao::after {
+.icon-wrap .save-btn::after, .link-icon.twitter::after, .link-icon.facebook::after, .link-icon.kakao::after {
     position: absolute;
+    left: 0;
     bottom: -19px;
     text-align: center;
     width: 100%;
+}
+
+.icon-wrap .save-btn::after {
+    content: "이미지 저장";
 }
 
 .link-icon.twitter::after {
@@ -407,25 +444,26 @@ footer .sns-list a > img {
 }
 
 /* 챌린지 수정 모달 wrapper */
-.modal-wrap {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    width: 426px;
-    background-color: #FFF;
-    box-sizing: border-box;
-    padding: 28px 25px;
-    border-radius: 20px;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
-}
-
 .modal header h2 {
     font-size: 16px;
     font-weight: 700;
     color: #000;
-    padding-bottom: 20px;
+    padding-bottom: 22px;
     text-align: center;
+}
+
+/* 취소(닫기) 버튼 스타일 */
+.modal .cancel-btn {
+    position: absolute;
+    right: 28px;
+    top: 24px;
+    width: 20px;
+    height: 20px;
+    border: none;
+    background: url(../img/close_btn.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
 }
 
 /* input */
@@ -434,11 +472,6 @@ footer .sns-list a > img {
     border-top: 1px solid #E0E0E0;
     border-bottom: 1px solid #E0E0E0;
     margin-bottom: 22px;
-}
-
-.input .small-p{
-    color: #828282;
-    padding-top: 10px;
 }
 
 /* 챌린지 이름 설정하기 */
@@ -508,18 +541,52 @@ footer .sns-list a > img {
 
 /* 챌린지 설정 모달 - 버튼 */
 .modal-buttons {
+    position: relative;
     display: flex;
     justify-content: space-between;
 }
 
 /* 취소 버튼 */
-.modal-buttons .cancel-btn {
+.modal-buttons .reset-btn {
     width: 132px;
 }
 
 /* 저장 버튼 */
 .modal-buttons .save-btn {
     width: 226px;
+}
+
+/* 초기화 확인 메시지 */
+/* 초기화 버튼 누르면 나타나고, 버튼 텍스트는 "네!"로 변경 */
+/* 버튼 외 다른 영역 누르면 사라지고 텍스트도 원래대로 변경 */
+.confirm-msg {
+    display: none;
+    position: absolute;
+    left: -24px;
+    top: -48px;
+    width: 180px;
+    background: #333333;
+    color: #FFF;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+.confirm-msg::after {
+    position: absolute;
+    content: "";
+    left: 50%;
+    bottom: -14px;
+    transform: translateX(-50%) translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 15px solid #333333;
+    border-right: 10px solid transparent;
+    border-left: 10px solid  transparent;
+}
+
+.confirm-msg p {
+    padding: 13px 0;
+    text-align: center;
 }
 
 @media all and (max-width: 480px) {
@@ -541,7 +608,7 @@ footer .sns-list a > img {
     }
 
     .challenge-contents {
-        padding: 65px 0 33px;
+        padding: 65px 0 154px;
     }
 
     .contents-header {
@@ -619,10 +686,6 @@ footer .sns-list a > img {
         width: 120px;
     }
 
-    .main-buttons .save-btn, .main-buttons .share-btn {
-        width: 78px;
-    }
-
     .main-buttons .save-btn {
         margin-right: 8px;
     }
@@ -663,17 +726,44 @@ footer .sns-list a > img {
         font-size: 12px;
     }
 
-    .modal-buttons .cancel-btn {
-        width: 96px;
+    .modal-buttons .reset-btn {
+        width: 102px;
     }
 
     .modal-buttons .save-btn {
-        width: 176px;
+        width: 168px;
+    }
+
+    .confirm-msg {
+        left: -23px;
+        top: -39px;
+        font-size: 12px;
+        width: 148px;
+    }
+    
+    .confirm-msg p {
+        padding: 10px 0;
+    }
+
+    .icon-wrap {
+        display: flex;
+        padding: 22px 7px 0;
+    }
+
+    .icon-wrap .save-btn, .link-icon {
+        width: 46px;
+        height: 46px;
+        margin-right: 27px;
+    }
+
+    .icon-wrap .save-btn::after {
+        left: -2px;
+        width: 50px;
     }
 }
 
 
-@media all and (max-width: 700px) {
+@media all and (max-width: 760px) {
     footer {
         font-size: 9px;
         line-height: 13px;

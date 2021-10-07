@@ -66,7 +66,7 @@
                 <h2 class="sr-only">메인 버튼 리스트</h2>
                 <button type="button" class="setting-btn fill">챌린지 설정하기</button>
                 <div class="btn-right">
-                    <button type="button" class="save-btn">저장하기</button>
+                    <!-- <button type="button" class="save-btn">저장하기</button> -->
                     <button type="button" class="share-btn">공유하기</button>
                 </div>
             </section>
@@ -83,16 +83,19 @@
                     </p>
                 </div>
                 <div class="sns-list">
-                    <a href="http://paullab.co.kr">
+                    <a href="http://paullab.co.kr" target="_blank">
                         <img src="src/img/home.png" alt="home">
                     </a>
-                    <a href="https://www.youtube.com/channel/UC4GnvNKtuJ4cqWsYjxNxAEQ">
+                    <a href="https://www.inflearn.com/users/@jejucoding" target="_blank">
+                        <img src="src/img/infrun_logo.png" alt="home">
+                    </a>
+                    <a href="https://www.youtube.com/channel/UC4GnvNKtuJ4cqWsYjxNxAEQ" target="_blank">
                         <img src="src/img/youtube.png" alt="home">
                     </a>
-                    <a href="https://www.instagram.com/weniv_official/?hl=ko">
+                    <a href="https://www.instagram.com/weniv_official/?hl=ko" target="_blank">
                         <img src="src/img/instagram.png" alt="home">
                     </a>
-                    <a href="https://www.facebook.com/Jejucoding/">
+                    <a href="https://www.facebook.com/Jejucoding/" target="_blank">
                         <img src="src/img/facebook.png" alt="home">
                     </a>
                 </div>
@@ -103,13 +106,13 @@
         <div class="modal-wrap">
             <header>
                 <h2>챌린지 설정</h2>
+                <button type="button" class="cancel-btn"></button>
             </header>
             <form id="setChallengeForm">
                 <article class="input">
                     <div class="input-name">
                         <h3 class="input-title">챌린지 이름</h3>
                         <input type="text" name="challengeName" id="challenge-name">
-                        <p class="small-p">** 챌린지 이름을 바꾸면 초기화 됩니다.</p>
                     </div>
                     <div class="input-term">
                         <h3 class="input-title">챌린지 기간</h3>
@@ -127,8 +130,11 @@
                 </article>
                 <section class="modal-buttons">
                     <h2 class="sr-only">모달 버튼 리스트</h2>
-                    <button type="button" class="cancel-btn">취소하기</button>
+                    <button type="button" class="reset-btn">챌린지 초기화</button>
                     <button type="button" class="save-btn set-btn fill">저장하기</button>
+                    <div class="confirm-msg">
+                        <p>정말 초기화하실 건가요?😭</p>
+                    </div>
                 </section>
             </form>
         </div>
@@ -137,15 +143,15 @@
         <div class="modal-wrap share-modal-wrap">
             <header>
                 <h2>서비스 공유하기</h2>
+                <button type="button" class="cancel-btn"></button>
             </header>
             <div class="icon-wrap">
-
+                <button type="button" class="save-btn"></button>
+                <a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao();"></a>
                 <a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitter();"></a>
                 <a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook();"></a>   
-                
             </div>
 
-            <button type="button" class="cancel-btn">취소하기</button> 
             <!-- 추후 추가 -->
             <!-- <a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao();"></a>  -->
         </div>
