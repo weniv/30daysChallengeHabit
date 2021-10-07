@@ -144,6 +144,7 @@ button.fill {
     height: 100%;
     background: linear-gradient(270deg, #956BD9 0%, #FFE973 101.15%);
     border-radius: 20px;
+    transition: all .4s;
 }
 
 /* 성공 문구 */
