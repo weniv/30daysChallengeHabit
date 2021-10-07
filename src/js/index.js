@@ -12,7 +12,7 @@ const app = document.getElementsByClassName("table-item-wrap")[0];
 let selectedItem;
 let appData = {}
 
-const saveBtn = document.querySelector('.save-btn');
+const saveBtn = document.querySelector('#img-capture-btn');
 
 window.addEventListener("keydown",function(e) {
     if(e.keyCode===13){
@@ -92,7 +92,7 @@ function setSticker(idx) {
 function setChallenge() {
     const challengeSetting = new FormData(document.getElementById("setChallengeForm"));
     const datas = Array.from(challengeSetting);
-    const prev_challengeName = appData.challengeName
+    // const prev_challengeName = appData.challengeName
     for (const i in datas) {
         if (Object.hasOwnProperty.call(datas, i)) {
             const data = datas[i];
@@ -100,19 +100,8 @@ function setChallenge() {
         }
     }
     settingModal.classList.remove("active");
-    if(prev_challengeName != appData.challengeName){
-        const defaultData = {};
-        [...Array(30)].forEach((k,i)=>{
-            defaultData[i+1] = 4;
-        })
-        const date = new Date
-        appData.data = defaultData
-
-        appData.startDate = date.toDateString()
-
-        document.getElementsByClassName("challenge-title")[0].innerHTML = appData.challengeName;
-        document.getElementById("start-date").innerHTML = appData.startDate;
-    }
+    document.getElementsByClassName("challenge-title")[0].innerHTML = appData.challengeName;
+    document.getElementById("start-date").innerHTML = appData.startDate;
     setTable();
     saveAppData();
 }
@@ -199,12 +188,48 @@ const confirmMsg = document.querySelector(".confirm-msg");
 resetBtn.addEventListener("click", function(){
     confirmMsg.style.display = "block";
     resetBtn.innerText = "네!";
+
+    if (resetBtn.classList.contains("check")){
+        const defaultData = {};
+        [...Array(60)].forEach((k,i)=>{
+            defaultData[i+1] = 4
+        })
+        const date = new Date
+        localStorage.setItem("habitChallengeData", JSON.stringify({
+            challengeName:"제목을 설정해 주세요",
+            data:defaultData,
+            challengeTerm:25,
+            startDate:date.toDateString()
+        }));
+
+        appData = JSON.parse(localStorage.getItem("habitChallengeData"));
+        document.getElementById("challenge-name").value = appData.challengeName;
+        document.getElementById(`day_${appData.challengeTerm}`).checked = true;
+        document.getElementById('');
+        document.getElementsByClassName("challenge-title")[0].innerHTML = appData.challengeName;
+        document.getElementById("start-date").innerHTML = appData.startDate;
+        console.log("?");
+        confirmMsg.style.display = "none";
+
+        setTable();
+        progressCheck();
+        settingModal.classList.remove("active");
+        resetBtn.innerText = "챌린지 초기화";
+        resetBtn.classList.remove("check")
+    }
+    else{
+        resetBtn.classList.add("check")
+    }
+
+
+
 });
 
 window.onclick = function(e) {
     if(e.target != resetBtn) {
         confirmMsg.style.display = "none";
         resetBtn.innerText = "챌린지 초기화";
+        resetBtn.classList.remove("check")
     }
 };
 
@@ -239,6 +264,8 @@ function stickerStyle(i, e){
 
 //스크린샷 기능
 async function screenShot() {
+
+    shareModal.classList.remove("active");
     const cv = await html2canvas(document.body);
     const imgData = cv.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
     const vDom = document.createElement('a');
@@ -252,6 +279,7 @@ function shareFacebook() {
     let facebook = 'http://www.facebook.com/sharer/sharer.php?u=';
     let link = facebook + url;
     window.open(link);
+    shareModal.classList.remove("active");
 }
 function shareTwitter() {
     
@@ -259,5 +287,25 @@ function shareTwitter() {
     let sendText = "하루한번 챌린지!"; // 전달할 텍스트
     let twitter = "https://twitter.com/intent/tweet?text="
     window.open(twitter + sendText + "&url=" + url);
+    shareModal.classList.remove("active");
+}
+function shareKakao() {
+    
+    Kakao.Link.sendDefault({
+        objectType: 'feed',
+        content: {
+            title: "Day Habit Challenge",
+            description: "하루하루 천천히 습관만들기 도전!", 
+            imageUrl: "https://weniv.github.io/30daysChallengeHabit/src/img/thumbnail.png",
+            link: {
+                    mobileWebUrl: "http://habitmaker.co.kr",
+                    webUrl: "http://habitmaker.co.kr"
+            }
+        }
+    })
+
+    shareModal.classList.remove("active");
 }
 saveBtn.addEventListener('click',screenShot);
+
+Kakao.init('551505ed5b3d098a365d690f62520040');

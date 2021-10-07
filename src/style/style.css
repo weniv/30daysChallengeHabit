@@ -22,6 +22,7 @@ html, body {
 body {
     font-family: 'Spoqa Han Sans Neo', 'sans-serif';
     font-weight: 500;
+    height: auto;
     color: #FFF;
     background-color: #F2F2F2;
 }
