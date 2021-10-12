@@ -25,6 +25,7 @@ body {
     height: auto;
     color: #FFF;
     background-color: #F2F2F2;
+    cursor: url(../img/cursor_gary.cur) 20 20, auto;
 }
 
 button, input {
@@ -33,6 +34,7 @@ button, input {
 
 a {
     text-decoration: none;
+    cursor: url(../img/cursor_gary.cur) 20 20, auto;
 }
 
 /* 버튼 공통 스타일 */
@@ -45,8 +47,8 @@ button {
     color: #956BD9;
     font-size: 14px;
     font-weight: 700;
-    cursor: pointer;
     padding: 0;
+    cursor: url(../img/cursor_gary.cur) 20 20, pointer;
 }
 
 /* 배경색이 있는 버튼은 fill 클래스 추가 */
@@ -186,7 +188,6 @@ button.fill {
     margin: 0 12px 12px 0;
     font-size: 16px;
     font-weight: 700;
-    cursor: pointer;
 }
 
 .table-item.selected {
@@ -241,7 +242,6 @@ button.fill {
     display: flex;
     flex-direction: column;
     align-items: center;
-    cursor: pointer;
 }
 
 /* 스티커 이미지 */
@@ -521,7 +521,7 @@ footer .sns-list a > img {
     border: 1px solid #BDBDBD;
     box-sizing: border-box;
     font-size: 14px;
-    cursor: pointer;
+    cursor: url(../img/cursor_gary.cur) 20 20, auto;
     text-align: center;
     margin-right: 11px;
 }
