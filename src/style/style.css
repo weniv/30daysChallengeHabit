@@ -523,7 +523,7 @@ footer .sns-list a > img {
     border: 1px solid #BDBDBD;
     box-sizing: border-box;
     font-size: 14px;
-    cursor: url(../img/cursor_gary.cur) 20 20, auto;
+    cursor: url(../img/cursor_pointer.cur) 20 20, auto;
     text-align: center;
     margin-right: 11px;
 }
