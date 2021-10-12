@@ -380,7 +380,7 @@ footer .sns-list a > img {
 .icon-wrap{
     display: flex;
     padding: 22px 22px 0;
-    border-top: 1px solid #E0E0E0;
+    /* border-top: 1px solid #E0E0E0; */
     margin-bottom: 22px;
 }
 
@@ -579,8 +579,12 @@ footer .sns-list a > img {
 }
 
 .share-info-text {
-    margin: 15px;
+    padding: 15px;
     line-height: 2;
+    font-size: 15px;
+    text-align: center;
+    border-top: 1px solid #E0E0E0;
+    border-bottom: 1px solid #E0E0E0;
 }
 
 .confirm-msg::after {
@@ -771,6 +775,10 @@ footer .sns-list a > img {
     .icon-wrap .save-btn::after {
         left: -2px;
         width: 50px;
+    }
+
+    .share-info-text {
+        font-size: 12px;
     }
 }
 
