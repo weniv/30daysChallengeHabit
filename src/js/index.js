@@ -256,7 +256,7 @@ function stickerStyle(i, e){
     const index = i % 5;
 
     selectSticker.style.top = `${tableItemWidth+e.offsetTop}px`;
-    selectSticker.style.left = `${e.offsetLeft}px`;
+    // selectSticker.style.left = `${e.offsetLeft}px`;
     selectSticker.style.left = index >= 1 ? `${tableItem[1].offsetLeft}px` : `${e.offsetLeft}px`;
 
     selectedItem = i;

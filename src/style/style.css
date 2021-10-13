@@ -22,10 +22,9 @@ html, body {
 body {
     font-family: 'Spoqa Han Sans Neo', 'sans-serif';
     font-weight: 500;
-    height: auto;
     color: #FFF;
     background-color: #F2F2F2;
-    cursor: url(../img/cursor_gary.cur) 20 20, auto;
+    cursor: url(../img/cursor_gary.cur) 16 16, auto;
 }
 
 button, input {
@@ -34,7 +33,7 @@ button, input {
 
 a {
     text-decoration: none;
-    cursor: url(../img/cursor_pointer.cur) 20 20, auto;
+    cursor: url(../img/cursor_pointer.cur) 16 16, auto;
 }
 
 /* 버튼 공통 스타일 */
@@ -48,7 +47,7 @@ button {
     font-size: 14px;
     font-weight: 700;
     padding: 0;
-    cursor: url(../img/cursor_pointer.cur) 20 20, pointer;
+    cursor: url(../img/cursor_pointer.cur) 16 16, pointer;
 }
 
 /* 배경색이 있는 버튼은 fill 클래스 추가 */
@@ -177,6 +176,7 @@ button.fill {
 
 /* 날짜와 스티커가 들어갈 div */
 .table-item {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -188,7 +188,7 @@ button.fill {
     margin: 0 12px 12px 0;
     font-size: 16px;
     font-weight: 700;
-    cursor: url(../img/cursor_pointer.cur) 20 20, pointer;
+    cursor: url(../img/cursor_pointer.cur) 16 16, pointer;
 }
 
 .table-item.selected {
@@ -201,15 +201,17 @@ button.fill {
     margin: 0 0 12px 0;
 }
 
+.table-item > .sticker {
+    width: 70px;
+    height: 70px;
+}
+
 /* 스티커 선택 모달 */
 .select-sticker {
     display: none;
     position: absolute;
-    /* left, top 값은 js에서 변경함 */
-    /* left: 24px;
-    top: 106px; */
-    width: 318px;
-    box-sizing: border-box;
+    /* left: 50%;
+    transform: translateX(-50%); */
     padding: 15px 16px 14px;
     background-color: #FFF;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
@@ -233,7 +235,6 @@ button.fill {
 /* 스티커 리스트 */
 .sticker-list {
     display: flex;
-    justify-content: space-between;
     color: #828282;
     font-size: 12px;
 }
@@ -243,13 +244,28 @@ button.fill {
     display: flex;
     flex-direction: column;
     align-items: center;
-    cursor: url(../img/cursor_pointer.cur) 20 20, pointer;
+    cursor: url(../img/cursor_pointer.cur) 16 16, pointer;
+    margin-right: 14px;
+}
+
+.sticker-item:nth-child(4) {
+    margin: 0;
+}
+
+/* .select-sticker에 .add-remove-btn 추가되면 .remove-btn 활성화 */
+.sticker-item.remove-btn {
+    display: none;
+}
+
+.select-sticker.add-remove-btn .remove-btn {
+    display: flex;
+    margin: 0 0 0 14px;
 }
 
 /* 스티커 이미지 */
-.sticker {
-    width: 60px;
-    height: 60px;
+.sticker-item > .sticker {
+    width: 62px;
+    height: 62px;
     margin-bottom: 5px;
 }
 
@@ -523,7 +539,7 @@ footer .sns-list a > img {
     border: 1px solid #BDBDBD;
     box-sizing: border-box;
     font-size: 14px;
-    cursor: url(../img/cursor_pointer.cur) 20 20, auto;
+    cursor: url(../img/cursor_pointer.cur) 16 16, auto;
     text-align: center;
     margin-right: 11px;
 }
@@ -677,8 +693,9 @@ footer .sns-list a > img {
         margin: 0 0 10px 0;
     }
 
-    .select-sticker {
-        width: 236px;
+    .table-item > .sticker {
+        width: 50px;
+        height: 50px;
     }
 
     .select-sticker h3 {
@@ -689,7 +706,15 @@ footer .sns-list a > img {
         font-size: 10px;
     }
 
-    .sticker{
+    .sticker-item {
+        margin-right: 12px;
+    }
+
+    .select-sticker.add-remove-btn .remove-btn {
+        margin: 0 0 0 12px;
+    }    
+
+    .sticker-item > .sticker{
         width: 42px;
         height: 42px;
     }
