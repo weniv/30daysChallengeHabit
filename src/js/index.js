@@ -266,10 +266,23 @@ function stickerStyle(i, e){
 async function screenShot() {
 
     shareModal.classList.remove("active");
+    const padding = 5
     const cv = await html2canvas(document.body);
-    const imgData = cv.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
+    const ratio =  cv.width/ document.body.getBoundingClientRect().width
+    const left = document.querySelector(".challenge-table").offsetLeft * ratio
+    const top = document.querySelector(".contents-header").offsetTop * ratio
+    const height = document.querySelector(".challenge-table").offsetHeight*ratio + document.querySelector(".contents-header").offsetHeight * ratio + top;
+    const width = document.querySelector(".challenge-table").offsetWidth*ratio
+    console.log(cv.width, cv.height,"????");
+    const canvas = document.createElement("canvas");
+    const imgData = cv.getContext("2d").getImageData(left-left/padding,top-top/padding,width+left*2/padding,height+top*2/padding)
+    canvas.width = imgData.width
+    canvas.height = imgData.height;
+    canvas.getContext("2d").putImageData(imgData,0,0)
+
+    const img = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
     const vDom = document.createElement('a');
-    vDom.href = imgData;
+    vDom.href = img;
     vDom.download = "myChallenge.jpg";
     vDom.click();
 }
