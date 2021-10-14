@@ -12,6 +12,8 @@ const app = document.getElementsByClassName("table-item-wrap")[0];
 let selectedItem;
 let appData = {}
 
+console.log(stickers[0].src);
+
 const saveBtn = document.querySelector('#img-capture-btn');
 
 window.addEventListener("keydown",function(e) {
@@ -79,10 +81,16 @@ function saveAppData() {
 function setSticker(idx) {
     const selectedDom = document.getElementById(`item${selectedItem+1}`);
     selectedDom.dataset.value = idx;
-    selectedDom.innerHTML=""
-    const sticker = stickers[idx].cloneNode();
+    // selectedDom.innerHTML = "";
+    selectedDom.innerHTML = `
+        <div class="img-wrapper">
+            <img src="${stickers[idx].src}" alt="sticker" class="sticker">
+        </div>`;
+    
+    // const sticker = stickers[idx].cloneNode();
+    const sticker = selectedDom.querySelector(".sticker");
     sticker.addEventListener('click', addModalEvt);
-    selectedDom.append(sticker);
+    // selectedDom.append(sticker);
     appData['data'][selectedItem+1] = idx;
     saveAppData();
 }
