@@ -9,8 +9,9 @@ const stickers = document.querySelectorAll(".sticker");
 const setBtn = document.querySelector(".set-btn");
 const progressBar = document.querySelector(".progress-bar");
 const app = document.getElementsByClassName("table-item-wrap")[0];
+
 let selectedItem;
-let appData = {}
+let appData = {};
 
 const saveBtn = document.querySelector('#img-capture-btn');
 
@@ -20,7 +21,8 @@ window.addEventListener("keydown",function(e) {
     }
 })
 
-setBtn.addEventListener("click", setChallenge)
+setBtn.addEventListener("click", setChallenge);
+
 settingBtn.addEventListener("click", function() {
     settingModal.classList.add("active");
 });
@@ -28,48 +30,33 @@ settingBtn.addEventListener("click", function() {
 shareBtn.addEventListener("click", function() {
     shareModal.classList.add("active");
 });
-[...cancelBtns].forEach(btn =>{
+
+[...cancelBtns].forEach(btn => {
     btn.addEventListener("click", function() {
         settingModal.classList.remove("active");
         shareModal.classList.remove("active");
     });
-    }
-    
-)
+});
 
-
-// 모달창 닫기
-window.onclick = function(e) {
-    if(settingModal) {
-        if(e.target == settingModal) {
-            settingModal.classList.remove("active");
-        }
-    }
-    if(shareModal) {
-        if(e.target == shareModal) {
-            shareModal.classList.remove("active");
-        }
-    }
-};
-
-
-function createDom(dom="div",id="",className="", child="") {
+function createDom(dom="div", id="", className="", child="") {
     const el = document.createElement(dom);
 
     el.className = className;
-    el.id=id;
+    el.id = id;
     el.append(child);
 
     return el;
 }
+
 function progressCheck() {
     const items = document.getElementsByClassName("table-item");
     let count = 0;
     [...items].forEach(item => {
-        count += item.dataset.value<4 ? 1 : 0
+        count += item.dataset.value < 4 ? 1 : 0;
     });
-    progressBar.style.width = `${count/items.length*100}%`
+    progressBar.style.width = `${count/items.length*100}%`;
 }
+
 function saveAppData() {
     localStorage.setItem("habitChallengeData", JSON.stringify(appData));
     progressCheck();
@@ -79,29 +66,34 @@ function saveAppData() {
 function setSticker(idx) {
     const selectedDom = document.getElementById(`item${selectedItem+1}`);
     selectedDom.dataset.value = idx;
-    selectedDom.innerHTML=""
-    const sticker = stickers[idx].cloneNode();
+    
+    selectedDom.innerHTML = `
+        <div class="img-wrapper">
+            <img src="${stickers[idx].src}" alt="sticker" class="sticker">
+        </div>`;
+    
+    const sticker = selectedDom.querySelector(".sticker");
     sticker.addEventListener('click', addModalEvt);
-    selectedDom.append(sticker);
     appData['data'][selectedItem+1] = idx;
     saveAppData();
 }
-
 
 //챌린지 설정
 function setChallenge() {
     const challengeSetting = new FormData(document.getElementById("setChallengeForm"));
     const datas = Array.from(challengeSetting);
-    // const prev_challengeName = appData.challengeName
+    
     for (const i in datas) {
         if (Object.hasOwnProperty.call(datas, i)) {
             const data = datas[i];
             appData[data[0]] = data[1];
         }
     }
+
     settingModal.classList.remove("active");
     document.getElementsByClassName("challenge-title")[0].innerHTML = appData.challengeName;
     document.getElementById("start-date").innerHTML = appData.startDate;
+
     setTable();
     saveAppData();
 }
@@ -132,7 +124,7 @@ function addModalEvt(item, idx) {
 }
 
 function setTable() {
-    app.innerHTML="";
+    app.innerHTML = "";
     for (const key in appData.data) {
         if (Object.hasOwnProperty.call(appData.data, key)) {
             const stamp = appData.data[key];
@@ -140,11 +132,14 @@ function setTable() {
             el.setAttribute('data-value', stamp);
             app.append(el);
         }
-        if (key==appData.challengeTerm){
+
+        if (key == appData.challengeTerm){
             break;
         }
     }
+
     const tableItem = document.querySelectorAll(".table-item");
+
     tableItem.forEach((item, idx) => {
         addModalEvt(item,idx);
     });
@@ -155,10 +150,12 @@ function init() {
     // 최초 데이터 없을때 초기화
     if (!localStorage.getItem("habitChallengeData")){
         const defaultData = {};
-        [...Array(60)].forEach((k,i)=>{
-            defaultData[i+1] = 4
-        })
-        const date = new Date
+        [...Array(60)].forEach((k, i) => {
+            defaultData[i + 1] = 4;
+        });
+
+        const date = new Date;
+
         localStorage.setItem("habitChallengeData", JSON.stringify({
             challengeName:"제목을 설정해 주세요",
             data:defaultData,
@@ -166,14 +163,13 @@ function init() {
             startDate:date.toDateString()
         }));
     }
+
     appData = JSON.parse(localStorage.getItem("habitChallengeData"));
     document.getElementById("challenge-name").value = appData.challengeName;
     document.getElementById(`day_${appData.challengeTerm}`).checked = true;
     document.getElementById('');
     document.getElementsByClassName("challenge-title")[0].innerHTML = appData.challengeName;
     document.getElementById("start-date").innerHTML = appData.startDate;
-
-    // const app = document.getElementsByClassName("table-item-wrap")[0]
 
     setTable();
     progressCheck();
@@ -191,10 +187,12 @@ resetBtn.addEventListener("click", function(){
 
     if (resetBtn.classList.contains("check")){
         const defaultData = {};
-        [...Array(60)].forEach((k,i)=>{
-            defaultData[i+1] = 4
-        })
-        const date = new Date
+        [...Array(60)].forEach((k, i) => {
+            defaultData[i+1] = 4;
+        });
+
+        const date = new Date;
+
         localStorage.setItem("habitChallengeData", JSON.stringify({
             challengeName:"제목을 설정해 주세요",
             data:defaultData,
@@ -208,31 +206,19 @@ resetBtn.addEventListener("click", function(){
         document.getElementById('');
         document.getElementsByClassName("challenge-title")[0].innerHTML = appData.challengeName;
         document.getElementById("start-date").innerHTML = appData.startDate;
-        console.log("?");
+        
         confirmMsg.style.display = "none";
 
         setTable();
         progressCheck();
+
         settingModal.classList.remove("active");
         resetBtn.innerText = "챌린지 초기화";
-        resetBtn.classList.remove("check")
+        resetBtn.classList.remove("check");
+    } else {
+        resetBtn.classList.add("check");
     }
-    else{
-        resetBtn.classList.add("check")
-    }
-
-
-
 });
-
-window.onclick = function(e) {
-    if(e.target != resetBtn) {
-        confirmMsg.style.display = "none";
-        resetBtn.innerText = "챌린지 초기화";
-        resetBtn.classList.remove("check")
-    }
-};
-
 
 // 스티커 추가 이벤트
 const tableItem = document.querySelectorAll(".table-item");
@@ -244,11 +230,10 @@ stickers.forEach((item,idx)=>{
     const idx1 = idx;
     item.addEventListener("click", ()=>{
         setSticker(idx1);
-    })
+    });
 })
 
-
-// 스티커 선택창 스타일 변경ww
+// 스티커 선택창 스타일 변경
 // tableItem를 클릭할 때마다 스티커 선택창 위치가 변경됨.
 function stickerStyle(i, e){
     // margin 값을 포함한 tableItem의 width값
@@ -256,7 +241,6 @@ function stickerStyle(i, e){
     const index = i % 5;
 
     selectSticker.style.top = `${tableItemWidth+e.offsetTop}px`;
-    // selectSticker.style.left = `${e.offsetLeft}px`;
     selectSticker.style.left = index >= 1 ? `${tableItem[1].offsetLeft}px` : `${e.offsetLeft}px`;
 
     selectedItem = i;
@@ -264,21 +248,19 @@ function stickerStyle(i, e){
 
 //스크린샷 기능
 async function screenShot() {
-
     shareModal.classList.remove("active");
-    const padding = 5
+    const padding = 5;
     const cv = await html2canvas(document.body);
     const ratio =  cv.width/ document.body.getBoundingClientRect().width
     const left = document.querySelector(".challenge-table").offsetLeft * ratio
     const top = document.querySelector(".contents-header").offsetTop * ratio
     const height = document.querySelector(".challenge-table").offsetHeight*ratio + document.querySelector(".contents-header").offsetHeight * ratio + top;
     const width = document.querySelector(".challenge-table").offsetWidth*ratio
-    console.log(cv.width, cv.height,"????");
     const canvas = document.createElement("canvas");
-    const imgData = cv.getContext("2d").getImageData(left-left/padding,top-top/padding,width+left*2/padding,height+top*2/padding)
-    canvas.width = imgData.width
+    const imgData = cv.getContext("2d").getImageData(left-left/padding,top-top/padding,width+left*2/padding,height+top*2/padding);
+    canvas.width = imgData.width;
     canvas.height = imgData.height;
-    canvas.getContext("2d").putImageData(imgData,0,0)
+    canvas.getContext("2d").putImageData(imgData, 0, 0);
 
     const img = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
     const vDom = document.createElement('a');
@@ -294,16 +276,16 @@ function shareFacebook() {
     window.open(link);
     shareModal.classList.remove("active");
 }
+
 function shareTwitter() {
-    
     let url = window.location.href;
     let sendText = "하루한번 챌린지!"; // 전달할 텍스트
     let twitter = "https://twitter.com/intent/tweet?text="
     window.open(twitter + sendText + "&url=" + url);
     shareModal.classList.remove("active");
 }
+
 function shareKakao() {
-    
     Kakao.Link.sendDefault({
         objectType: 'feed',
         content: {
@@ -319,6 +301,29 @@ function shareKakao() {
 
     shareModal.classList.remove("active");
 }
+
 saveBtn.addEventListener('click',screenShot);
 
 Kakao.init('551505ed5b3d098a365d690f62520040');
+
+
+// 모달창 닫기
+window.onclick = function(e) {
+    if(settingModal) {
+        if(e.target == settingModal) {
+            settingModal.classList.remove("active");
+        }
+    }
+
+    if(shareModal) {
+        if(e.target == shareModal) {
+            shareModal.classList.remove("active");
+        }
+    }
+
+    if(e.target != resetBtn) {
+        confirmMsg.style.display = "none";
+        resetBtn.innerText = "챌린지 초기화";
+        resetBtn.classList.remove("check");
+    }
+};
