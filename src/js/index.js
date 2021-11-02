@@ -1,3 +1,6 @@
+//로컬스토리지 이름
+const storageName = "habitChallengeDB"
+
 // 챌린지 설정(수정)하기 모달창 띄우기
 const settingBtn = document.querySelector(".setting-btn");
 const shareBtn = document.querySelector(".share-btn")
@@ -58,7 +61,7 @@ function progressCheck() {
 }
 
 function saveAppData() {
-    localStorage.setItem("habitChallengeData", JSON.stringify(appData));
+    localStorage.setItem(storageName, JSON.stringify(appData));
     progressCheck();
 }
 
@@ -148,7 +151,7 @@ function setTable() {
 
 function init() {
     // 최초 데이터 없을때 초기화
-    if (!localStorage.getItem("habitChallengeData")){
+    if (!localStorage.getItem(storageName)){
         const defaultData = {};
         [...Array(60)].forEach((k, i) => {
             defaultData[i + 1] = 4;
@@ -156,7 +159,7 @@ function init() {
 
         const date = new Date;
 
-        localStorage.setItem("habitChallengeData", JSON.stringify({
+        localStorage.setItem(storageName, JSON.stringify({
             challengeName:"제목을 설정해 주세요",
             data:defaultData,
             challengeTerm:25,
@@ -164,7 +167,7 @@ function init() {
         }));
     }
 
-    appData = JSON.parse(localStorage.getItem("habitChallengeData"));
+    appData = JSON.parse(localStorage.getItem(storageName));
     document.getElementById("challenge-name").value = appData.challengeName;
     document.getElementById(`day_${appData.challengeTerm}`).checked = true;
     document.getElementById('');
@@ -193,14 +196,14 @@ resetBtn.addEventListener("click", function(){
 
         const date = new Date;
 
-        localStorage.setItem("habitChallengeData", JSON.stringify({
+        localStorage.setItem(storageName, JSON.stringify({
             challengeName:"제목을 설정해 주세요",
             data:defaultData,
             challengeTerm:25,
             startDate:date.toDateString()
         }));
 
-        appData = JSON.parse(localStorage.getItem("habitChallengeData"));
+        appData = JSON.parse(localStorage.getItem(storageName));
         document.getElementById("challenge-name").value = appData.challengeName;
         document.getElementById(`day_${appData.challengeTerm}`).checked = true;
         document.getElementById('');
